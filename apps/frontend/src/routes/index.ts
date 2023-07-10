@@ -7,7 +7,7 @@ export const get: RequestHandler = async () => {
   return {
     status: 200,
     body: {
-      appName: app_name,
+      appName: app_name || "no name",
     },
   };
 };
