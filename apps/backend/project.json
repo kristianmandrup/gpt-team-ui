@@ -1,0 +1,111 @@
+{
+  "root": "apps/backend",
+  "sourceRoot": "apps/backend/src",
+  "projectType": "application",
+  "tags": ["scope:app"],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "tsConfig": "apps/backend/tsconfig.app.json",
+        "main": "apps/backend/src/main.ts",
+        "assets": ["apps/backend/src/assets"],
+        "outputPath": "dist/apps/backend",
+        "outputFileName": "index.js"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/backend/src/environments/environment.ts",
+              "with": "apps/backend/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "dependencies"
+        }
+      ]
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "backend:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/backend/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/backend"],
+      "options": {
+        "jestConfig": "apps/backend/jest.config.js",
+        "passWithNoTests": true,
+        "coverageReporters": ["lcov"]
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "conventional",
+        "commitMessageFormat": "release(${projectName}): bump to ${version} [skip ci]",
+        "tagPrefix": "${projectName}@v",
+        "trackDeps": true,
+        "postTargets": ["backend:github"]
+      }
+    },
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "${tag}",
+        "notes": "${notes}"
+      }
+    },
+    "docker-alpha": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "tags": ["nx-monorepo/backend:alpha"],
+        "context": ".",
+        "target": "serve"
+      }
+    },
+    "docker-alpha-push": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "push": true,
+        "tags": ["nx-monorepo/backend:alpha", "nx-monorepo/backend:${tag}"],
+        "context": ".",
+        "target": "serve"
+      }
+    },
+    "docker": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "tags": ["nx-monorepo/backend:latest"],
+        "context": ".",
+        "target": "serve"
+      }
+    },
+    "docker-push": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "push": true,
+        "tags": ["nx-monorepo/backend:latest", "nx-monorepo/backend:${tag}"],
+        "context": ".",
+        "target": "serve"
+      }
+    }
+  }
+}

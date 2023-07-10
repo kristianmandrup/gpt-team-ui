@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "projects": {
+    "common": "packages/common",
+    "backend": "apps/backend",
+    "store": "packages/store",
+    "frontend": "apps/frontend",
+    "ui": "packages/ui",
+    "utils": "packages/utils"
+  }
+}

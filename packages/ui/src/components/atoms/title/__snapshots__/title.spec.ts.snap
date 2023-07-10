@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Title renders 1`] = `
+<body>
+  <div>
+    <h1
+      class="text-xl font-bold dark:text-gray-50"
+    >
+      Title Name
+    </h1>
+  </div>
+</body>
+`;

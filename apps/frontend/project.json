@@ -1,0 +1,128 @@
+{
+  "root": "apps/frontend",
+  "sourceRoot": "apps/frontend/src",
+  "projectType": "application",
+  "tags": ["scope:app"],
+  "targets": {
+    "sync": {
+      "executor": "@nxext/sveltekit:sveltekit",
+      "options": {
+        "command": "sync"
+      }
+    },
+    "build": {
+      "executor": "@nxext/sveltekit:sveltekit",
+      "options": {
+        "command": "build"
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "dependencies"
+        }
+      ]
+    },
+    "serve": {
+      "executor": "@nxext/sveltekit:sveltekit",
+      "options": {
+        "command": "dev --host"
+      },
+      "dependsOn": [
+        {
+          "target": "sync",
+          "projects": "self"
+        }
+      ]
+    },
+    "preview": {
+      "executor": "@nxext/sveltekit:sveltekit",
+      "options": {
+        "command": "preview"
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "add": {
+      "executor": "@nxext/sveltekit:add"
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/frontend/**/*.{ts,svelte,spec.ts}"],
+        "ignorePath": "apps/frontend/.gitignore"
+      }
+    },
+    "check": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "svelte-check",
+        "cwd": "apps/frontend",
+        "tsconfig": "./tsconfig.app.json"
+      }
+    },
+    "e2e": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "playwright test",
+        "cwd": "apps/frontend"
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "conventional",
+        "commitMessageFormat": "release(${projectName}): bump to ${version} [skip ci]",
+        "tagPrefix": "${projectName}@v",
+        "trackDeps": true,
+        "postTargets": ["frontend:github"]
+      }
+    },
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "${tag}",
+        "notes": "${notes}"
+      }
+    },
+    "docker-alpha": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "tags": ["nx-monorepo/frontend:alpha"],
+        "target": "serve"
+      }
+    },
+    "docker-alpha-push": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "push": true,
+        "tags": ["nx-monorepo/frontend:alpha", "nx-monorepo/frontend:${tag}"],
+        "target": "serve"
+      }
+    },
+    "docker": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "tags": ["nx-monorepo/frontend:latest"],
+        "target": "serve"
+      }
+    },
+    "docker-push": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "push": true,
+        "tags": ["nx-monorepo/frontend:latest", "nx-monorepo/frontend:${tag}"],
+        "target": "serve"
+      }
+    }
+  }
+}
