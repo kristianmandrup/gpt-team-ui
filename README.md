@@ -8,6 +8,10 @@
 
 This project was generated using [Nx](https://nx.dev).
 
+## Update July 2023
+
+The dependencies have been updated to work with the latest Sveltekit, Svelte and Headless UI.
+
 ### Features
 
 - [SvelteKit](https://kit.svelte.dev) as the frontend framework
@@ -37,15 +41,15 @@ Below are plugins used:
 
 - [SvelteKit](https://kit.svelte.dev)
 
-  - `npm install --save-dev @nxext/sveltekit`
+  - `npm install --save-dev nxext-sveltekit-16`
 
 - [Svelte](https://svelte.dev)
 
-  - `npm install --save-dev @nxext/svelte`
+  - `npm install --save-dev nxext-svelte-16`
 
 - [Nest](https://nestjs.com)
 
-  - `npm install --save-dev @nrwl/nest`
+  - `npm install --save-dev @nx/nest`
 
 - [Docker](https://github.com/nx-tools/nx-tools/tree/main/packages/nx-docker)
 
@@ -67,7 +71,7 @@ Run `nx g @nxext/sveltekit:application $app-name` to generate a SvelteKit applic
 
 ### Nest
 
-Run `nx g @nrwl/nest:app $app-name` to generate a Nest application.
+Run `nx g @nx/nest:app $app-name` to generate a Nest application.
 
 ## Generate a library
 
@@ -77,65 +81,65 @@ Libraries are shareable across libraries and applications. They can be imported 
 
 ### Svelte Component
 
-Run `nx g @nxext/svelte:library $lib-name` to generate a Svelte component library.
+Run `nx g nxext-svelte-16:library $lib-name` to generate a Svelte component library.
 
 ### Nest Library
 
-Run `nx g @nrwl/nest:library $lib-name` to generate a Nest library.
+Run `nx g @nx/nest:library $lib-name` to generate a Nest library.
 
 **Resource**
 
-Run `nx g @nrwl/nest:resource $resource-name` to generate a Nest resource.
+Run `nx g @nx/nest:resource $resource-name` to generate a Nest resource.
 
 Resource consist of module, controller, service, dto and entities for basic CRUD process.
 
 **Module**
 
-Run `nx g @nrwl/nest:module $module-name` to generate a Nest module.
+Run `nx g @nx/nest:module $module-name` to generate a Nest module.
 
 **Controller**
 
-Run `nx g @nrwl/nest:controller $controller-name` to generate a Nest controller.
+Run `nx g @nx/nest:controller $controller-name` to generate a Nest controller.
 
 **Service**
 
-Run `nx g @nrwl/nest:service $service-name` to generate a Nest service.
+Run `nx g @nx/nest:service $service-name` to generate a Nest service.
 
 **Resolver**
 
-Run `nx g @nrwl/nest:resolver $resolver-name` to generate a Nest resolver.
+Run `nx g @nx/nest:resolver $resolver-name` to generate a Nest resolver.
 
 **Gateway**
 
-Run `nx g @nrwl/nest:gateway $gateway-name` to generate a Nest gateway.
+Run `nx g @nx/nest:gateway $gateway-name` to generate a Nest gateway.
 
 **Middleware**
 
-Run `nx g @nrwl/nest:middleware $middleware-name` to generate a Nest middleware.
+Run `nx g @nx/nest:middleware $middleware-name` to generate a Nest middleware.
 
 **Interceptor**
 
-Run `nx g @nrwl/nest:interceptor $interceptor-name` to generate a Nest interceptor.
+Run `nx g @nx/nest:interceptor $interceptor-name` to generate a Nest interceptor.
 
 **Filter**
 
-Run `nx g @nrwl/nest:filter $filter-name` to generate a Nest filter.
+Run `nx g @nx/nest:filter $filter-name` to generate a Nest filter.
 
 **Guard**
 
-Run `nx g @nrwl/nest:guard $guard-name` to generate a Nest guard.
+Run `nx g @nx/nest:guard $guard-name` to generate a Nest guard.
 
 **Pipe**
 
-Run `nx g @nrwl/nest:pipe $pipe-name` to generate a Nest pipe.
+Run `nx g @nx/nest:pipe $pipe-name` to generate a Nest pipe.
 
 **Decorator**
 
-Run `nx g @nrwl/nest:decorator $decorator-name` to generate a Nest decorator.
+Run `nx g @nx/nest:decorator $decorator-name` to generate a Nest decorator.
 
 **Class**
 
-Run `nx g @nrwl/nest:class $class-name` to generate a Nest class.
+Run `nx g @nx/nest:class $class-name` to generate a Nest class.
 
 > Alternatively, you can use `--project=$lib-name` to skip the prompt for the library name.
 
@@ -145,7 +149,7 @@ Run `nx g lib $lib-name` to generate a functional library.
 
 ## Code scaffolding
 
-Run `nx g @nxext/svelte:component $component-name --project=$lib-name` to generate a new component.
+Run `nx g nxext-svelte-16:component $component-name --project=$lib-name` to generate a new component.
 
 ## Development server
 

@@ -1,63 +1,28 @@
 {
-  "root": "apps/frontend",
+  "name": "frontend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/frontend/src",
   "projectType": "application",
   "tags": ["scope:app"],
-  "targets": {
-    "sync": {
-      "executor": "@nxext/sveltekit:sveltekit",
+    "component": {
+      "executor": "nxext-sveltekit-16:component",
       "options": {
-        "command": "sync"
-      }
-    },
-    "build": {
-      "executor": "@nxext/sveltekit:sveltekit",
-      "options": {
-        "command": "build"
-      },
-      "dependsOn": [
-        {
-          "target": "build",
-          "projects": "dependencies"
-        }
-      ]
-    },
-    "serve": {
-      "executor": "@nxext/sveltekit:sveltekit",
-      "options": {
-        "command": "dev --host"
-      },
-      "dependsOn": [
-        {
-          "target": "sync",
-          "projects": "self"
-        }
-      ]
-    },
-    "preview": {
-      "executor": "@nxext/sveltekit:sveltekit",
-      "options": {
-        "command": "preview"
-      },
-      "dependsOn": [
-        {
-          "target": "build",
-          "projects": "self"
-        }
-      ]
+        "project": "frontend",
+        "unitTestRunner": "vitest"
+      }      
     },
     "add": {
-      "executor": "@nxext/sveltekit:add"
+      "executor": "nxext-sveltekit-16:add"
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": ["apps/frontend/**/*.{ts,svelte,spec.ts}"],
         "ignorePath": "apps/frontend/.gitignore"
-      }
+      }      
     },
     "check": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "@nx/workspace:run-commands",
       "options": {
         "command": "svelte-check",
         "cwd": "apps/frontend",
@@ -65,7 +30,7 @@
       }
     },
     "e2e": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "@nx/workspace:run-commands",
       "options": {
         "command": "playwright test",
         "cwd": "apps/frontend"
