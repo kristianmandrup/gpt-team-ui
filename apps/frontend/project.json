@@ -4,12 +4,31 @@
   "sourceRoot": "apps/frontend/src",
   "projectType": "application",
   "tags": ["scope:app"],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "options": {
+        "outputPath": "dist/apps/frontend"
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test"
+    },
+    "serve": {
+      "executor": "@nx/vite:serve"
+    },
+    "dev": {
+      "executor": "@nx/vite:dev-server"
+    },
+    "preview": {
+      "executor": "@nx/vite:preview"
+    },
     "component": {
       "executor": "nxext-sveltekit-16:component",
       "options": {
         "project": "frontend",
         "unitTestRunner": "vitest"
-      }      
+      }
     },
     "add": {
       "executor": "nxext-sveltekit-16:add"
@@ -19,7 +38,7 @@
       "options": {
         "lintFilePatterns": ["apps/frontend/**/*.{ts,svelte,spec.ts}"],
         "ignorePath": "apps/frontend/.gitignore"
-      }      
+      }
     },
     "check": {
       "executor": "@nx/workspace:run-commands",
